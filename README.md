@@ -45,9 +45,5 @@ python main.py
 
 I wanted to explore how modern NLP models can be applied to everyday productivity tasks like meeting documentation. This project gave me experience working with transformer pipelines, designing a simple rule-based NLU component, and structuring Python code for real-world workflows.
 
-## Future Ideas
 
-- Use named entity recognition (NER) to identify responsible team members
-- Add support for multi-speaker attribution
-- Convert to a Streamlit or Flask web app
 
