@@ -51,9 +51,3 @@ I wanted to explore how modern NLP models can be applied to everyday productivit
 - Add support for multi-speaker attribution
 - Convert to a Streamlit or Flask web app
 
-## Author
-
-VamsiKrishna Nallagatla  
-Graduate Student – DePaul University  
-AI Engineering and Software Development  
-LinkedIn: https://www.linkedin.com/in/vamsikrishna89/
