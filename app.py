@@ -3,15 +3,15 @@ from transcript_loader import load_transcript
 from summarizer import generate_summary
 from action_extractor import extract_with_scores, highlight_action_verbs
 
-def process_transcript(file):
+def process_transcript(file, text_input):
     try:
-        # Handle both file-like and string-like inputs
-        if hasattr(file, "read"):
+        # Use uploaded file if available
+        if file and hasattr(file, "read"):
             raw_text = file.read().decode("utf-8")
-        elif isinstance(file, str):
-            raw_text = file
+        elif text_input and isinstance(text_input, str):
+            raw_text = text_input
         else:
-            return "Unsupported file format.", "No action items extracted."
+            return "No valid input provided.", "No action items extracted."
 
         transcript = load_transcript(raw_text)
 
@@ -40,13 +40,16 @@ def process_transcript(file):
 # Gradio interface
 demo = gr.Interface(
     fn=process_transcript,
-    inputs=gr.File(label="Upload Transcript (.txt)"),
+    inputs=[
+        gr.File(label="Upload Transcript (.txt)", optional=True),
+        gr.Textbox(label="Or Paste Transcript Text", lines=10, placeholder="Paste meeting notes here...", optional=True)
+    ],
     outputs=[
         gr.Textbox(label="Summary", lines=10),
         gr.Markdown(label="Action Items")
     ],
     title="🧠 InsightAlert",
-    description="GenAI-powered meeting summarizer and action item extractor using T5 Transformers."
+    description="GenAI-powered meeting summarizer and action item extractor using T5 or Pegasus Transformers."
 )
 
 if __name__ == "__main__":
