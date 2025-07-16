@@ -1,12 +1,12 @@
 from transformers import pipeline
 from typing import List
 
-def load_summarizer(model_name: str = "t5-small") -> pipeline:
+def load_summarizer(model_name: str = "google/pegasus-xsum") -> pipeline:
     """
     Loads a Hugging Face summarization pipeline.
 
     Args:
-        model_name (str): Model name (default: t5-small).
+        model_name (str): Model name (default: google/pegasus-xsum).
 
     Returns:
         pipeline: Summarization pipeline.
@@ -32,7 +32,7 @@ def chunk_text(text: str, max_words: int = 400) -> List[str]:
 
 def generate_summary(text: str, max_length: int = 120, min_length: int = 30) -> str:
     """
-    Generates a summary from input text using a T5 model.
+    Generates a summary from input text using a Pegasus model.
 
     Args:
         text (str): Input transcript.
