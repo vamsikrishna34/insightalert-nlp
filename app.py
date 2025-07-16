@@ -4,20 +4,34 @@ from summarizer import generate_summary
 from action_extractor import extract_with_scores, highlight_action_verbs
 
 def process_transcript(file):
-    transcript = load_transcript(file.read())
-    summary = generate_summary(transcript)
-    action_items = extract_with_scores(transcript)
+    try:
+        # Decode uploaded file from bytes to string
+        raw_text = file.read().decode("utf-8")
+        transcript = load_transcript(raw_text)
 
-    if action_items:
-        formatted_actions = [
-            f"**{highlight_action_verbs(item)}**\nConfidence: `{score}`"
-            for item, score in action_items
-        ]
-    else:
-        formatted_actions = ["No action items identified."]
+        # Validate transcript length
+        if not transcript or len(transcript.strip()) < 30:
+            return "Transcript too short or empty.", "No action items extracted."
 
-    return summary, "\n\n".join(formatted_actions)
+        # Generate summary
+        summary = generate_summary(transcript)
 
+        # Extract action items
+        action_items = extract_with_scores(transcript)
+        if action_items:
+            formatted_actions = [
+                f"**{highlight_action_verbs(item)}**\nConfidence: `{score}`"
+                for item, score in action_items
+            ]
+        else:
+            formatted_actions = ["No action items identified."]
+
+        return summary, "\n\n".join(formatted_actions)
+
+    except Exception as e:
+        return f"Error generating summary: {str(e)}", "Action item extraction skipped due to error."
+
+# Gradio interface
 demo = gr.Interface(
     fn=process_transcript,
     inputs=gr.File(label="Upload Transcript (.txt)"),
