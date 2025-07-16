@@ -1,22 +1,25 @@
-# main.py
-
 from transcript_loader import load_transcript
 from summarizer import generate_summary
-from action_extractor import extract_action_items
+from action_extractor import (
+    extract_with_scores,
+    highlight_action_verbs
+)
 
 def main():
-    file_path = "sample_transcript.txt"
+    file_path = "sample_transcripts/sample_transcript.txt"
     transcript = load_transcript(file_path)
 
-    print("\nMeeting Summary:\n")
+    print("\n Meeting Summary:\n")
     summary = generate_summary(transcript)
     print(summary)
 
-    print("\nAction Items:\n")
-    actions = extract_action_items(transcript)
-    if actions:
-        for item in actions:
-            print("- " + item)
+    print("\n Action Items (with confidence scores):\n")
+    action_items = extract_with_scores(transcript)
+
+    if action_items:
+        for item, score in action_items:
+            highlighted = highlight_action_verbs(item)
+            print(f"- {highlighted}  [Confidence: {score}]")
     else:
         print("No action items identified.")
 
