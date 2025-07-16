@@ -41,8 +41,8 @@ def process_transcript(file, text_input):
 demo = gr.Interface(
     fn=process_transcript,
     inputs=[
-        gr.File(label="Upload Transcript (.txt)", optional=True),
-        gr.Textbox(label="Or Paste Transcript Text", lines=10, placeholder="Paste meeting notes here...", optional=True)
+        gr.File(label="Upload Transcript (.txt)"),
+        gr.Textbox(label="Or Paste Transcript Text", lines=10, placeholder="Paste meeting notes here...")
     ],
     outputs=[
         gr.Textbox(label="Summary", lines=10),
