@@ -1,11 +1,13 @@
-Moderator: Thanks everyone for joining. Let's begin with the product updates.
+Moderator: Welcome everyone. Let’s begin with updates.
 
-Jamie: I’ll send the latest feature list by Monday.
+Jamie: I will send the updated feature list by Monday and prepare the onboarding guide for new hires.
 
-Moderator: We need to finalize the Q2 roadmap by the end of next week.
+Sarah: I’ll review the new designs with the UX team tomorrow and share feedback by Thursday.
 
-Sarah: I’ll review the new designs with the UX team tomorrow.
+Alex: I’ll schedule a follow-up call with the vendor this week to finalize the integration timeline.
 
-Alex: I’ll set up a follow-up call with the vendor. Once we have that, we can move ahead with integration.
+Moderator: Please submit your budget proposals before Friday. We need to finalize allocations by next week.
 
-Moderator: Team, please prepare your budget proposals before Friday.
+Sarah: We should complete the usability testing by the end of the month.
+
+Jamie: I also plan to finish the internal documentation by next Wednesday.
