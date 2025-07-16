@@ -16,7 +16,7 @@ def load_summarizer(model_name: str = "sshleifer/distilbart-cnn-12-6") -> pipeli
 # Initialize once for reuse
 summarizer = load_summarizer()
 
-def chunk_text(text: str, max_words: int = 400) -> List[str]:
+def chunk_text(text: str, max_words: int = 300) -> List[str]:
     """
     Splits long text into manageable chunks for summarization.
 
@@ -30,7 +30,7 @@ def chunk_text(text: str, max_words: int = 400) -> List[str]:
     words = text.split()
     return [' '.join(words[i:i + max_words]) for i in range(0, len(words), max_words)]
 
-def generate_summary(text: str, max_length: int = 120, min_length: int = 30) -> str:
+def generate_summary(text: str, max_length: int = 100, min_length: int = 25) -> str:
     """
     Generates a summary from input text using a distilled BART model.
 
