@@ -1,9 +1,10 @@
 import gradio as gr
-from transcript_loader import load_transcript
 from summarizer import generate_summary
 from action_extractor import extract_with_scores, highlight_action_verbs
 
 def process_transcript(file, text_input):
+    status.update(value="⏳ Processing...")
+
     try:
         # Use uploaded file if available
         if file and hasattr(file, "read"):
@@ -11,12 +12,14 @@ def process_transcript(file, text_input):
         elif text_input and isinstance(text_input, str):
             raw_text = text_input
         else:
+            status.update(value="")
             return "No valid input provided.", "No action items extracted."
 
-        transcript = load_transcript(raw_text)
+        transcript = raw_text.strip()
 
         # Validate transcript length
-        if not transcript or len(transcript.strip()) < 30:
+        if not transcript or len(transcript.split()) < 30:
+            status.update(value="")
             return "Transcript too short or empty.", "No action items extracted."
 
         # Generate summary
@@ -32,25 +35,28 @@ def process_transcript(file, text_input):
         else:
             formatted_actions = ["No action items identified."]
 
+        status.update(value="")
         return summary, "\n\n".join(formatted_actions)
 
     except Exception as e:
+        status.update(value="")
         return f"Error generating summary: {str(e)}", "Action item extraction skipped due to error."
 
 # Gradio interface
-demo = gr.Interface(
-    fn=process_transcript,
-    inputs=[
-        gr.File(label="Upload Transcript (.txt)"),
-        gr.Textbox(label="Or Paste Transcript Text", lines=10, placeholder="Paste meeting notes here...")
-    ],
-    outputs=[
-        gr.Textbox(label="Summary", lines=10),
-        gr.Markdown(label="Action Items")
-    ],
-    title="🧠 InsightAlert",
-    description="GenAI-powered meeting summarizer and action item extractor using T5 or Pegasus Transformers."
-)
+with gr.Blocks() as demo:
+    gr.Markdown("## 🧠 InsightAlert")
+    gr.Markdown("GenAI-powered meeting summarizer and action item extractor using T5 or DistilBART.")
 
-if __name__ == "__main__":
-    demo.launch()
+    with gr.Row():
+        file_input = gr.File(label="Upload Transcript (.txt)")
+        text_input = gr.Textbox(label="Or Paste Transcript Text", lines=10, placeholder="Paste meeting notes here...")
+
+    status = gr.Textbox(label="Status", interactive=False)
+
+    summary_output = gr.Textbox(label="Summary", lines=10)
+    actions_output = gr.Markdown(label="Action Items")
+
+    run_button = gr.Button("Run")
+    run_button.click(process_transcript, inputs=[file_input, text_input], outputs=[summary_output, actions_output])
+
+demo.launch()
