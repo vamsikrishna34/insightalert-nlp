@@ -1,12 +1,12 @@
 from transformers import pipeline
 from typing import List
 
-def load_summarizer(model_name: str = "google/pegasus-xsum") -> pipeline:
+def load_summarizer(model_name: str = "facebook/bart-large-cnn") -> pipeline:
     """
     Loads a Hugging Face summarization pipeline.
 
     Args:
-        model_name (str): Model name (default: google/pegasus-xsum).
+        model_name (str): Model name (default: facebook/bart-large-cnn).
 
     Returns:
         pipeline: Summarization pipeline.
@@ -32,7 +32,7 @@ def chunk_text(text: str, max_words: int = 400) -> List[str]:
 
 def generate_summary(text: str, max_length: int = 120, min_length: int = 30) -> str:
     """
-    Generates a summary from input text using a Pegasus model.
+    Generates a summary from input text using a BART model.
 
     Args:
         text (str): Input transcript.
