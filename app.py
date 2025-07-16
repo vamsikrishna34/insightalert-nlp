@@ -5,8 +5,14 @@ from action_extractor import extract_with_scores, highlight_action_verbs
 
 def process_transcript(file):
     try:
-        # Decode uploaded file from bytes to string
-        raw_text = file.read().decode("utf-8")
+        # Handle both file-like and string-like inputs
+        if hasattr(file, "read"):
+            raw_text = file.read().decode("utf-8")
+        elif isinstance(file, str):
+            raw_text = file
+        else:
+            return "Unsupported file format.", "No action items extracted."
+
         transcript = load_transcript(raw_text)
 
         # Validate transcript length
