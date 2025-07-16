@@ -4,8 +4,8 @@ from action_extractor import extract_with_scores, highlight_action_verbs
 
 def process_transcript(file, text_input):
     try:
-        status_message = "⏳ Processing..."
         transcript = ""
+        status_message = "⏳ Processing..."
 
         # Try reading from file
         if file and hasattr(file, "read"):
