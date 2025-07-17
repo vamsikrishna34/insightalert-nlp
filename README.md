@@ -1,16 +1,16 @@
-🧠 InsightAlert
+ InsightAlert
 GenAI-powered meeting summarizer and action item extractor
 Built with Hugging Face Transformers, Gradio, and Python
 
-🚀 Overview
+ Overview
 InsightAlert transforms raw meeting transcripts into concise summaries and actionable tasks. Designed for enterprise productivity, it uses state-of-the-art NLP models to extract key insights and highlight responsibilities — making follow-ups faster and meetings more meaningful.
 
 ✨ Features
-- 🧠 Summarization using DistilBART or Pegasus
-- 📌 Action item extraction with confidence scoring
-- 📄 Dual input: upload .txt files or paste text directly
-- ⚙️ Modular architecture for easy extension
-- 🖥️ Gradio UI for fast prototyping and deployment
+-  Summarization using DistilBART or Pegasus
+-  Action item extraction with confidence scoring
+-  Dual input: upload .txt files or paste text directly
+-  Modular architecture for easy extension
+-  Gradio UI for fast prototyping and deployment
 
 🛠️ Tech Stack
 | Component | Description | 
@@ -54,6 +54,8 @@ Moderator: Everyone should review the Q3 roadmap before Monday.
 
 🤝 Contributing
 Pull requests and feedback are welcome! If you’d like to collaborate or suggest improvements, feel free to open an issue or reach out.
+
+Link: https://huggingface.co/spaces/vamsikrishna1345/Insightalertnlp
 
 📬 Contact
 Created by Vamsi
